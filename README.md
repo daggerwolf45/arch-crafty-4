@@ -10,7 +10,7 @@ Crafty Controller is a feature rich panel that allows you to create and run serv
 
 **Build notes**
 
-Latest commit to GitHub branch 'master'.
+Latest commit to GitHub branch 'main'.
 
 **Usage**
 ```
@@ -24,7 +24,7 @@ docker run -d \
     -v <path for config files>:/config \
     -v /etc/localtime:/etc/localtime:ro \
     -e TZ=Etc/<region> \
-    -e JAVA_VERSION=<8|11|17|21-graal|latest> \
+    -e JAVA_VERSION=<8|11|17|22|openjdk> \
     -e UMASK=<umask for created files> \
     -e PUID=<uid for user> \
     -e PGID=<gid for user> \
@@ -55,7 +55,7 @@ docker run -d \
     -v /apps/docker/crafty:/config \
     -v /etc/localtime:/etc/localtime:ro \
     -e TZ=Etc/UTC \
-    -e JAVA_VERSION=21-graal \
+    -e JAVA_VERSION=22 \
     -e UMASK=000 \
     -e PUID=99 \
     -e PGID=100 \

@@ -39,7 +39,7 @@ mv /tmp/scripts-master/shell/arch/docker/*.sh /usr/local/bin/
 ####
 
 # define pacman packages
-pacman_packages="jre8-openjdk-headless jre11-openjdk-headless jre17-openjdk-headless jre-openjdk-headless gcc git libwebp rust"
+pacman_packages="jre-openjdk-headless gcc git libwebp rust"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
@@ -50,7 +50,7 @@ fi
 ####
 
 # define aur packages
-aur_packages="jdk21-graalvm-bin"
+aur_packages="jre8-graalvm-bin jdk11-graalvm-bin jdk17-graalvm-bin jdk21-graalvm-bin jdk22-graalvm-bin"
 
 # call aur install script (arch user repo)
 source aur.sh
@@ -138,29 +138,29 @@ export JAVA_VERSION=$(echo "${JAVA_VERSION}" | sed -e 's~^[ \t]*~~;s~[ \t]*$~~')
 if [[ ! -z "${JAVA_VERSION}" ]]; then
 	echo "[info] JAVA_VERSION defined as '${JAVA_VERSION}'" | ts '%Y-%m-%d %H:%M:%.S'
 else
-	echo "[info] JAVA_VERSION not defined,(via -e JAVA_VERSION), defaulting to Java version 'latest'" | ts '%Y-%m-%d %H:%M:%.S'
-	export JAVA_VERSION="latest"
+	echo "[info] JAVA_VERSION not defined,(via -e JAVA_VERSION), defaulting to Java version '22'" | ts '%Y-%m-%d %H:%M:%.S'
+	export JAVA_VERSION="22"
 fi
 
 if [[ "${JAVA_VERSION}" == "8" ]]; then
-	ln -fs '/usr/lib/jvm/java-8-openjdk/jre/bin/java' '/usr/bin/java'
-	archlinux-java set java-8-openjdk/jre
+	ln -fs '/usr/lib/jvm/java-8-graalvm/jre/bin/java' '/usr/bin/java'
+	archlinux-java set java-8-graalvm/jre
 elif [[ "${JAVA_VERSION}" == "11" ]]; then
-	ln -fs '/usr/lib/jvm/java-11-openjdk/bin/java' '/usr/bin/java'
-	archlinux-java set java-11-openjdk
+	ln -fs '/usr/lib/jvm/java-11-graalvm/bin/java' '/usr/bin/java'
+	archlinux-java set java-11-graalvm
 elif [[ "${JAVA_VERSION}" == "17" ]]; then
-	ln -fs '/usr/lib/jvm/java-17-openjdk/bin/java' '/usr/bin/java'
-	archlinux-java set java-17-openjdk
-elif [[ "${JAVA_VERSION}" == "21-graal" ]]; then
-	ln -fs '/usr/lib/jvm/java-21-graalvm/bin/java' '/usr/bin/java'
-	archlinux-java set java-21-graalvm
-elif [[ "${JAVA_VERSION}" == "latest" ]]; then
+	ln -fs '/usr/lib/jvm/java-17-graalvm/bin/java' '/usr/bin/java'
+	archlinux-java set java-17-graalvm
+elif [[ "${JAVA_VERSION}" == "22" ]]; then
+	ln -fs '/usr/lib/jvm/java-22-graalvm/bin/java' '/usr/bin/java'
+	archlinux-java set java-22-graalvm
+elif [[ "${JAVA_VERSION}" == "openjdk" ]]; then
 	ln -fs "/usr/lib/jvm/java-${latest_java_version}-openjdk/bin/java" '/usr/bin/java'
 	archlinux-java set java-${latest_java_version}-openjdk
 else
-	echo "[warn] Java version '${JAVA_VERSION}' not valid, defaulting to Java 21-GraalVM" | ts '%Y-%m-%d %H:%M:%.S'
-	ln -fs '/usr/lib/jvm/java-21-graalvm/bin/java' '/usr/bin/java'
-	archlinux-java set java-21-graalvm
+	echo "[warn] Java version '${JAVA_VERSION}' not valid, defaulting to Java 22-GraalVM" | ts '%Y-%m-%d %H:%M:%.S'
+	ln -fs '/usr/lib/jvm/java-22-graalvm/bin/java' '/usr/bin/java'
+	archlinux-java set java-22-graalvm
 fi
 
 EOF
