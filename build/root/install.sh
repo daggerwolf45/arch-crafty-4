@@ -50,7 +50,7 @@ fi
 ####
 
 # define aur packages
-aur_packages=""
+aur_packages="jdk21-graalvm-bin"
 
 # call aur install script (arch user repo)
 source aur.sh
@@ -151,13 +151,16 @@ elif [[ "${JAVA_VERSION}" == "11" ]]; then
 elif [[ "${JAVA_VERSION}" == "17" ]]; then
 	ln -fs '/usr/lib/jvm/java-17-openjdk/bin/java' '/usr/bin/java'
 	archlinux-java set java-17-openjdk
+elif [[ "${JAVA_VERSION}" == "21-graal" ]]; then
+	ln -fs '/usr/lib/jvm/java-21-graalvm/bin/java' '/usr/bin/java'
+	archlinux-java set java-21-graalvm
 elif [[ "${JAVA_VERSION}" == "latest" ]]; then
 	ln -fs "/usr/lib/jvm/java-${latest_java_version}-openjdk/bin/java" '/usr/bin/java'
 	archlinux-java set java-${latest_java_version}-openjdk
 else
-	echo "[warn] Java version '${JAVA_VERSION}' not valid, defaulting to Java version 'latest" | ts '%Y-%m-%d %H:%M:%.S'
-	ln -fs "/usr/lib/jvm/java-${latest_java_version}-openjdk/bin/java" '/usr/bin/java'
-	archlinux-java set java-${latest_java_version}-openjdk
+	echo "[warn] Java version '${JAVA_VERSION}' not valid, defaulting to Java 21-GraalVM" | ts '%Y-%m-%d %H:%M:%.S'
+	ln -fs '/usr/lib/jvm/java-21-graalvm/bin/java' '/usr/bin/java'
+	archlinux-java set java-21-graalvm
 fi
 
 EOF
