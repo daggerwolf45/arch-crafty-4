@@ -25,7 +25,7 @@ ADD run/nobody/*.sh /home/nobody/
 
 # make executable and run bash scripts to install app
 RUN chmod +x /root/*.sh && \
-	/bin/bash /root/install.sh "${RELEASETAG}" "${TARGETARCH}"
+	/bin/bash /root/install.sh "ignored" "${TARGETARCH}"
 
 # docker settings
 #################
