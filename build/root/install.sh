@@ -50,7 +50,7 @@ fi
 ####
 
 # define aur packages
-aur_packages="jre8-graalvm-bin jdk11-graalvm-bin jdk17-graalvm-bin jdk21-graalvm-bin jdk22-graalvm-bin"
+aur_packages="jdk8-graalvm-bin jdk11-graalvm-bin jdk17-graalvm-bin jdk21-graalvm-bin jdk22-graalvm-bin"
 
 # call aur install script (arch user repo)
 source aur.sh
